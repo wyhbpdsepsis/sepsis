@@ -1,4 +1,4 @@
-# Code to generate in: Clinical Characteristics of Bronchopulmonary Dysplasia and the Risk of Sepsis Onset Prediction via Machine Learning Models 
+# Code to generate the figures in: Clinical Characteristics of Bronchopulmonary Dysplasia and the Risk of Sepsis Onset Prediction via Machine Learning Models 
 
 This is the R and python code needed to repeat the analysis in the manuscript:
 
