@@ -2,7 +2,7 @@
 
 This is the R and python code needed to repeat the analysis in the manuscript:
 
-R version 4.1.3 and python version 3.8.2 was used to run all of this code. 
+R version 4.5.0 and python version 3.8.2 was used to run all of this code. 
 # Missing data
 To filter for missing data, the missing data module in Python 3.9.12 software was used.
 
