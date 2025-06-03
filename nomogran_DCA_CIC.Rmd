@@ -22,6 +22,12 @@ mydata<- BPD5_31_25
 mydata
 ```
 ```{r setup, include=FALSE}
+mydata$chorioamnionitis<- factor(mydata$chorioamnionitis)
+mydata$NEC<- factor(mydata$NEC)
+mydata$sepsis<-factor(mydata$sepsis)
+dd=datadist(mydata)
+option<-options(datadist="dd")
+colnames(mydata)
 formula<-as.formula(sepsis ~Invasive_ventilator_duration+CRIBII+chorioamnionitis+NEC)
 model<-lrm(formula,
            data=mydata,
