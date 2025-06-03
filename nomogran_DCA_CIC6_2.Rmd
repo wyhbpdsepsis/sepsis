@@ -42,6 +42,7 @@ OR <-exp(model$coefficients)
 OR
 ```
 ```{r setup, include=FALSE}
+#figure 2_c
 library(nomogramFormula)
 Nomogram_1<-nomogram(model,
                      fun = function(x)1/(1+exp(-x)),
@@ -59,14 +60,14 @@ ci(auc(ROC))
 ```
 
 ```{r setup, include=FALSE}
-#校准曲线
+#校准曲线figure 2_D
 cal1<-calibrate(model,method = "boot",B=1000)
 plot(cal1,xlim=c(0,1.0),ylim=c(0,1.0))
 #install.packages("devtools")
 #devtools::install_github('yikeshu0611/ggDCA')
 library(ggDCA)
 library(ggplot2)
-mydata2<-mydata
+mydata2<-read.csv("/Users/hmoye/Desktop/BPD5-31_25.csv")
 DCA_training<-decision_curve(sepsis ~Invasive_ventilator_duration+CRIBII+chorioamnionitis+NEC,
                              data=mydata2,
                              #,policy = "opt-in"
@@ -74,7 +75,7 @@ DCA_training<-decision_curve(sepsis ~Invasive_ventilator_duration+CRIBII+chorioa
                              thresholds=seq(0,1, by=0.05), bootstraps=1000)
 ```
 ```{r setup, include=FALSE}
-#DCA绘图
+#DCA绘图figure 2_E
 plot_decision_curve(DCA_training,
                     curve.names=c('Nomogram model'),
                     cost.benefit.axis=FALSE,
@@ -82,7 +83,7 @@ plot_decision_curve(DCA_training,
                     confidence.intervals=FALSE,
                     standardize=FALSE,
                     legend.position=c("topright"))
-# CIC绘图
+# CIC绘图figure 2_F
 plot_clinical_impact(DCA_training,population.size=1000,
                      cost.benefit.axis=T,
                      n.cost.benefits=8,
@@ -97,6 +98,7 @@ mydata4<- mydata2#选取全数据，该结果不包括在我们的表中
 f1 <- glm(sepsis ~Invasive_ventilator_duration+CRIBII+chorioamnionitis+NEC, 
           data = mydata4, family = binomial(link = "logit")) 
 #这个模型预测变量l（通常代表二元结果，比如是/否）作为因变量，a1、h123、L097、M_V、wc111和p1495作为自变量。这里使用的是binomial分布（二项分布），链接函数为logit，代表是一个逻辑回归模型。这个模型是用Train数据集来拟合的。
+#包括Brier score的校准图
 P1 <- predict(f1, type = "response")
 val.prob(P1, mydata4$sepsis)
 ```
