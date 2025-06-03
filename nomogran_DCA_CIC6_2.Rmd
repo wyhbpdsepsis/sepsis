@@ -65,7 +65,7 @@ plot(cal1,xlim=c(0,1.0),ylim=c(0,1.0))
 #devtools::install_github('yikeshu0611/ggDCA')
 library(ggDCA)
 library(ggplot2)
-mydata2<-BPD5_31_25
+mydata2<-mydata
 DCA_training<-decision_curve(sepsis ~Invasive_ventilator_duration+CRIBII+chorioamnionitis+NEC,
                              data=mydata2,
                              #,policy = "opt-in"
